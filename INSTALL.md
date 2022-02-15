@@ -20,45 +20,45 @@
 
 # API endpoints
 
-- GET /links
+- GET /api/links
 ```
 Endpoint para listagem de todos os links com sistema de paginação.
 
 Parâmetro: page (opcional)
 ```
 
-- GET /export_links
+- GET /api/export_links
 ```
 Endpoint para exportar todos os links no formato CSV.
 ```
 
-- GET /link/{slug}
+- GET /api/link/{slug}
 ```
 Endpoint para acessar os dados de um link específico através do slug, contabilizando o acesso.
 ```
 
-- POST /link
+- POST /api/link
 ```
 Endpoint para a criação de um novo link.
 
 Parâmetros: url, slug (opcional)
 ```
 
-- POST /import_links
+- POST /api/import_links
 ```
 Endpoint para a importação de um arquivo CSV para cadastro em massa de links.
 
 Parâmetro: csv (arquivo)
 ```
 
-- PUT /link/{id}
+- PUT /api/link/{id}
 ```
 Endpoint para a edição dos dados de um link.
 
 Parâmetros: url, slug (opcional)
 ```
 
-- DELETE /link/{id}
+- DELETE /api/link/{id}
 ```
 Endpoint para a remoção de um link.
 ```

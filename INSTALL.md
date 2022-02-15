@@ -59,7 +59,6 @@ Parâmetros: url, slug (opcional)
 ```
 
 - DELETE /link/{id}
-- PUT /link/{id}
 ```
 Endpoint para a remoção de um link.
 ```

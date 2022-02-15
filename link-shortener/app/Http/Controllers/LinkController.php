@@ -89,14 +89,14 @@ class LinkController extends Controller
         $check_slug = Link::GetBySlug($link->slug);
 
         if ($check_slug->exists()) {
-            abort(500);
+            return response()->json(['message' => 'slug already in use'], 409);
         }
 
         if ($link->save()) {
             return new LinkResource($link);
         }
 
-        abort(500);
+        return response()->json(['message' => 'internal error'], 500);
     }
 
     /**
@@ -111,6 +111,9 @@ class LinkController extends Controller
 
         $handle = fopen($csv, "r");
         $csv_header = true;
+
+        $total_created = 0;
+        $total_errors = 0;
 
         while ($csv_line = fgetcsv($handle, 1000, ",")) {
 
@@ -130,13 +133,27 @@ class LinkController extends Controller
                 $check_slug = Link::GetBySlug($link->slug);
 
                 if (!$check_slug->exists()) {
-                    $link->save();
+                    if($link->save()) {
+                        $total_created++;
+                    }else{
+                        $total_errors++;
+                    }
+                }else{
+                    $total_errors++;
                 }
 
             }
         }
 
-        abort(500);
+        if ($total_created == 0) {
+            return response()->json(['message' => 'no links imported'], 400);
+        }elseif ($total_errors > 0) {
+            return response()->json(['message' => $total_created.' links imported and '.$total_errors.' with error'], 207);
+        }
+
+        return response()->json(['message' => $total_created.' links imported'], 201);
+
+        
     }
 
     /**
@@ -151,7 +168,7 @@ class LinkController extends Controller
         $link = Link::GetBySlug($slug);
 
         if (!$link->exists()) {
-            // validate error
+            return response()->json(['message' => 'link not found'], 404);
         }
 
         $link->first();
@@ -192,7 +209,7 @@ class LinkController extends Controller
             return new LinkResource($link);
         }
 
-        abort(500);
+        return response()->json(['message' => 'internal error'], 500);
     }
 
     /**
@@ -211,6 +228,6 @@ class LinkController extends Controller
             ], 200);
         }
 
-        abort(500);
+        return response()->json(['message' => 'internal error'], 500);
     }
 }

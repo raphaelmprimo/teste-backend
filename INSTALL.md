@@ -18,7 +18,7 @@
   php artisan serve
 ```
 
-# Documentação API
+# API endpoints
 
 - GET /links
 - GET /export_links

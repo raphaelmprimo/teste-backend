@@ -24,7 +24,7 @@ class ImportLinkRequest extends FormRequest
     public function rules()
     {
         return [
-            'csv' => 'bail|required|filemimes:csv,txt|max:10240',
+            'csv' => 'bail|required|file|mimes:csv,txt|max:10240',
         ];
     }
 }

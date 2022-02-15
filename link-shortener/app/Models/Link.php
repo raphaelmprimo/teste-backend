@@ -27,7 +27,8 @@ class Link extends Model
 
     public function scopeGetBySlug($query, $slug)
     {
-        return $query->where('slug', $slug)->firstOrFail();
+        return $query->where('slug', $slug);
     }
+
 
 }

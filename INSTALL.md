@@ -21,9 +21,21 @@
 # API endpoints
 
 - GET /links
+```
+Parâmetro: page (opcional)
+```
 - GET /export_links
 - GET /link/{slug}
 - POST /link
+```
+Parâmetros: url, slug (opcional)
+```
 - POST /import_links
+```
+Parâmetro: csv (arquivo)
+```
 - PUT /link/{id}
+```
+Parâmetros: url, slug (opcional)
+```
 - DELETE /link/{id}

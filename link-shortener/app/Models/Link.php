@@ -18,4 +18,16 @@ class Link extends Model
         'url', 'slug', 'total_access'
     ];
 
+    /**
+     * Scope a query to get the link by slug.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+
+    public function scopeGetBySlug($query, $slug)
+    {
+        return $query->where('slug', $slug)->firstOrFail();
+    }
+
 }

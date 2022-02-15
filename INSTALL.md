@@ -20,4 +20,10 @@
 
 # Documentação API
 
-- 
+- GET /links
+- GET /export_links
+- GET /link/{slug}
+- POST /link
+- POST /import_links
+- PUT /link/{id}
+- DELETE /link/{id}

@@ -18,11 +18,17 @@ use App\Http\Controllers\LinkController;
 // List links
 Route::get('links', [LinkController::class, 'index']);
 
+// Export links
+Route::get('export_links', [LinkController::class, 'exportLinks']);
+
 // Open a link
 Route::get('link/{slug}', [LinkController::class, 'show']);
 
 // Create new link
 Route::post('link', [LinkController::class, 'store']);
+
+// Import links
+Route::post('import_links', [LinkController::class, 'importLinks']);
 
 // Update link
 Route::put('link/{id}', [LinkController::class, 'update']);

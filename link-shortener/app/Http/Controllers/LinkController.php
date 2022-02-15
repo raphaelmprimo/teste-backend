@@ -165,18 +165,18 @@ class LinkController extends Controller
      */
     public function show(Request $request, $slug)
     {
-        $link = Link::GetBySlug($slug);
 
+        $link = Link::getBySlug($slug)->first();
+    
         if (!$link->exists()) {
             return response()->json(['message' => 'link not found'], 404);
         }
 
-        $link->first();
-
         $link->increment('total_access');
+        
 
         $access = new Access;
-        $access->link_id = $link["id"];
+        $access->link_id = $link->id;
         $access->ip = $request->ip();
         $access->user_agent = $request->header('User-Agent');
         $access->save();
